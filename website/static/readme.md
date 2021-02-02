@@ -1,0 +1,1 @@
+This folder will contain files that will not change, like images, javascript, and css files. They can be loaded in the html files using jinja.
