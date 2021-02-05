@@ -1,6 +1,6 @@
 # Python Flask Website
 
-This is a simple website created using Python/Flask that allows users to create an account and add/delete text based notes.
+This is a simple website created using Python/Flask that allows users to create an account and add/delete text-based notes.
 
 ## Setup & Installation
 
@@ -9,6 +9,7 @@ Make sure you have at least Python 3.6.
 ```bash
 git clone <repo-url>
 ```
+
 
 ```bash
 pip install -r requirements.txt
@@ -21,11 +22,11 @@ pip3 install -r requirements.txt
 ## Running the App/Website
 
 ```bash
-python3 main.py
-```
-Or 
-```bash
 python main.py
+```
+Or
+```bash
+python3 main.py
 ```
 
 ## Viewing the App/Website
