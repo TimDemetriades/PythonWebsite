@@ -8,4 +8,4 @@ views = Blueprint('views', __name__)    # blueprint for flask application
 @login_required    # cannot access this page/route unless user is logged in
 def home():
     # return "<h1>Tim Test</h1>"
-    return render_template("home.html")
+    return render_template("home.html", user=current_user)

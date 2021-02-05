@@ -26,7 +26,7 @@ def login():
         else:
             flash('Email does not exist.', category='error')
             
-    return render_template("login.html")
+    return render_template("login.html", user=current_user)
 
 @auth.route('/logout')
 @login_required    # cannot access this page/route unless user is logged in
@@ -63,5 +63,5 @@ def sign_up():
             login_user(user, remember=True)    # holds logged in user and stores in flask session
             return redirect(url_for('views.home'))    # views is blueprint, home is function within that blueprint (which contains the url)
             
-    return render_template("sign_up.html")
+    return render_template("sign_up.html", user=current_user)
 
