@@ -8,6 +8,22 @@ auth = Blueprint('auth', __name__)    # blueprint for flask application
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method =='POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        
+        # Check if user is a valid user that's been created
+        user = User.query.filter_by(email=email).first()
+        if user:    # if a user with this email is found
+            # Check if the password entered matches password hash stored
+            if check_password_hash(user.password, password):
+                flash('Logged in successfully!', category='success')
+                return redirect(url_for('views.home'))
+            else:
+                flash('Incorrect password, try again.', category='error')
+        else:
+            flash('Email does not exist.', category='error')
+            
     return render_template("login.html")
 
 @auth.route('/logout')
@@ -22,7 +38,11 @@ def sign_up():
         password = request.form.get('password')
         passwordConfirm = request.form.get('passwordConfirm')
         
-        if len(email) < 4:
+        user = User.query.filter_by(email=email).first()    # to check if user already exists
+        
+        if user:
+            flash('Email already exists.', category='error')       
+        elif len(email) < 4:
             flash('Email must be greater than 3 characters.', category='error')
         elif len(first_name) < 2:
             flash('First name must be greater than 1 character.', category='error')
